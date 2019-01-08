@@ -1,7 +1,7 @@
 const flatArr = arr => arr.reduce((acc, val) => acc.concat(val), []);
 
-const itemlist = [];
-const duplicates = [];
+let itemlist = [];
+let duplicates = [];
 
 const rangeParser = value => {
   if (value.indexOf("-") > -1) {
@@ -40,20 +40,51 @@ const getValues = anyOneParserFactory(commaParser, rangeParser, numberParser);
 const addItemToList = (items, list, duplicates) => {
   const itemslist = [...list];
   const duplicatesList = [...duplicates];
-  items.forEach(item => {
-    if (list.indexOf(item) > -1) {
-      duplicatesList.push(item);
-    } else {
-      itemslist.push(item);
-    }
-  });
+  items &&
+    items.forEach(item => {
+      if (list.indexOf(item) > -1) {
+        duplicatesList.push(item);
+      } else {
+        itemslist.push(item);
+      }
+    });
   return { itemslist, duplicatesList };
+};
+
+const makeList = array => {
+  const list = document.createElement("ul");
+
+  array.forEach(item => {
+    const el = document.createElement("li");
+    el.appendChild(document.createTextNode(item));
+    list.appendChild(el);
+  });
+
+  return list;
 };
 
 const handleInputChange = event => {
   const value = event.target.value;
   const valueArr = getValues(value);
-  const { itemslist, duplicatesList } = addItemToList(valueArr, itemlist, duplicates);
+  const data = addItemToList(valueArr, itemlist, duplicates);
+
+  itemlist = data.itemslist;
+  duplicates = data.duplicatesList;
+
+  const finalListDiv = document.getElementById("final-list");
+
+  if (finalListDiv.hasChildNodes()) {
+    finalListDiv.removeChild(finalListDiv.childNodes[0]);
+  }
+  finalListDiv.appendChild(makeList(itemlist));
+
+  const duplicatesListDiv = document.getElementById("duplicates-list");
+  if (duplicatesListDiv.hasChildNodes()) {
+    duplicatesListDiv.removeChild(duplicatesListDiv.childNodes[0]);
+  }
+  duplicatesListDiv.appendChild(makeList(duplicates));
+
+  event.target.value = "";
 };
 
 document.addEventListener("DOMContentLoaded", function() {
