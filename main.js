@@ -1,5 +1,3 @@
-const inputBox = document.getElementById("input-box");
-
 const flatArr = arr => arr.reduce((acc, val) => acc.concat(val), []);
 
 const itemlist = [];
@@ -56,10 +54,14 @@ const handleInputChange = event => {
   const value = event.target.value;
   const valueArr = getValues(value);
   const { itemslist, duplicatesList } = addItemToList(valueArr, itemlist, duplicates);
-  console.log(valueArr);
 };
 
-// inputBox.addEventListener("change", handleInputChange);
+document.addEventListener("DOMContentLoaded", function() {
+  const inputBox = document.getElementById("input-box");
+  inputBox.addEventListener("change", handleInputChange);
+});
+
+window.module = window.module || {};
 
 module.exports = {
   getValues,
