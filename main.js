@@ -11,21 +11,25 @@ const rangeParser = value => {
     for (let i = start; i <= end; i++) {
       list.push(i);
     }
-    return list;
+    return list.length ? list : null;
   }
   return null;
 };
 
 const commaParser = value => {
   if (value.indexOf(",") > -1) {
-    return flatArr(value.split(",").map(getValues));
+    const result = value
+      .split(",")
+      .map(getValues)
+      .filter(num => num !== null);
+    return flatArr(result);
   }
   return null;
 };
 
 const numberParser = value => {
   const num = Number(value);
-  return [num];
+  return isNaN(num) ? null : [num];
 };
 
 const anyOneParserFactory = (...parsers) => input =>
