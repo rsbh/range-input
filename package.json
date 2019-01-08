@@ -1,0 +1,22 @@
+{
+  "name": "range-input",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishabh09/range-input.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rishabh09/range-input/issues"
+  },
+  "homepage": "https://github.com/rishabh09/range-input#readme",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
