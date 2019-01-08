@@ -6,10 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Range Input</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .numbers-list {
+      display: flex;
+    }
+    .numbers-list > div {
+      margin: 8px;
+    }
+  </style>
 </head>
 
 <body>
-
+  <div class="input-form">
+    <input type="text" id="input-box" />
+  </div>
+  <div class="numbers-list">
+    <div class="final-list">
+      <h2>Final List</h2>
+    </div>
+    <div class="duplicates-list">
+      <h2>Duplicates List</h2>
+    </div>
+  </div>
 </body>
 <script src="/main.js"></script>
 
